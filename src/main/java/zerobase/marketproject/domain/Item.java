@@ -3,10 +3,11 @@ package zerobase.marketproject.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import zerobase.marketproject.config.Timestamped;
+import zerobase.marketproject.dto.ItemDto;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Item {
+public class Item extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,11 +32,11 @@ public class Item {
     @Column(nullable = false)
     private String itemStatus;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime regTime;
 
-    @LastModifiedDate
-    private LocalDateTime updateTime;
-
+    public Item(ItemDto itemDto) {
+        this.itemStatus = itemDto.getItemStatus();
+        this.itemName = itemDto.getItemName();
+        this.price = itemDto.getPrice();
+        this.stock = itemDto.getStock();
+    }
 }
