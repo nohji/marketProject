@@ -1,5 +1,6 @@
 package zerobase.marketproject.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Member {
     @Id
+    @Column(name = "userid")
     private String userid;
     private String username;
     private String password;

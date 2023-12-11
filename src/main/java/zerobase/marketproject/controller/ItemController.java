@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
-    private final ItemService itemService;
 
     @GetMapping("/admin/items")
     public List<Item> itemList() {
