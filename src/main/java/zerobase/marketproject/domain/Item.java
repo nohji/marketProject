@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Item extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     @Column(nullable = false, length = 50)
     private String itemName;

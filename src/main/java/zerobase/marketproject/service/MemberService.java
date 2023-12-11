@@ -1,21 +1,22 @@
 package zerobase.marketproject.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import zerobase.marketproject.domain.Member;
 import zerobase.marketproject.repository.MemberRepository;
 
 import java.util.Optional;
 
-
+@RequiredArgsConstructor
 @Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    // 유저 id로 User 찾기
+    public Member findMemeber(String id) {
+        return memberRepository.findById(id).get();
     }
-
     public boolean registerMember(String userid, String username, String password, String tel){
         //userid 중복 체크
         Optional<Member> optionalMember = memberRepository.findById(userid);

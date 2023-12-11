@@ -1,5 +1,6 @@
 package zerobase.marketproject.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,14 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import zerobase.marketproject.domain.Member;
 import zerobase.marketproject.service.MemberService;
 
+@RequiredArgsConstructor
 @RestController
 public class MemberController {
 
     private final MemberService memberService;
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     @PostMapping("/member/new")
     public Boolean registerMember(@RequestBody Member member){
