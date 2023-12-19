@@ -2,9 +2,11 @@ package zerobase.marketproject.controller;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import zerobase.marketproject.domain.*;
 import zerobase.marketproject.service.CartService;
 import zerobase.marketproject.service.MemberService;
@@ -14,11 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
+
 public class OrderController {
-    private MemberService memberService;
-    private CartService cartService;
-    private OrderService orderService;
+
+    @Autowired
+    private  MemberService memberService;
+    private final CartService cartService;
+    private final OrderService orderService;
 
     // 장바구니 상품 전체 주문
     @Transactional
@@ -29,7 +34,8 @@ public class OrderController {
        // if(principalDetails.getUser().getId() == id) {
 
             Member user = memberService.findMemeber(id);
-        System.out.println(user);
+            System.out.println(user);
+
             // 유저 카트 찾기
             Cart userCart = cartService.findUserCart(user.getUserid());
 

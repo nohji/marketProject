@@ -15,7 +15,7 @@ public class MemberService {
 
     // 유저 id로 User 찾기
     public Member findMemeber(String id) {
-        return memberRepository.findById(id).get();
+        return memberRepository.findByUserid(id).get();
     }
     public boolean registerMember(String userid, String username, String password, String tel){
         //userid 중복 체크
